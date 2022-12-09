@@ -1,0 +1,222 @@
+package com.rpg;
+import java.util.*;
+public class RPG {
+    public static void main(String[] args){
+
+
+        RPG game;
+        game = new RPG();
+       // game.Story();
+        game.Fighting();
+    }
+    public void Story() {
+        try {
+            Thread.sleep(1000);
+            System.out.println("...");
+            Thread.sleep(1000);
+            System.out.println("...");
+            Thread.sleep(1000);
+            System.out.println("...");
+            Thread.sleep(1000);
+            System.out.println("...: Hey who are you show yourself!");
+            Thread.sleep(1000);
+            System.out.println("*Show yourself*");
+            Thread.sleep(1000);
+            System.out.println("...: Tell me, what's your name");
+            Thread.sleep(1000);
+            Scanner sc1 = new Scanner(System.in);
+            System.out.println("Enter Your Name: ");
+            String player_name = sc1.nextLine();
+            System.out.println("...: Oh hello there "+ player_name);
+            Thread.sleep(1000);
+            System.out.println("...: My name is Goku");
+            Thread.sleep(1000);
+            System.out.println("Goku: Say, I'm kinda bored");
+            Thread.sleep(1000);
+            System.out.println("Goku: Oh I know do you want so spar with me?");
+            Thread.sleep(1000);
+            Scanner sc = new Scanner(System.in);
+            System.out.println("============================ \n Yes \n  \n No \n============================");
+            String Yes = sc.nextLine();
+            Thread.sleep(1000);
+            System.out.println("Goku: Awesome, let's go!");
+            Thread.sleep(1000);
+            System.out.println(" ");
+            System.out.println("Ready?");
+            System.out.println(" ");
+            Thread.sleep(1000);
+            System.out.println(" ");
+            System.out.println("FIGHT!");
+            System.out.println(" ");
+            Thread.sleep(1000);
+        }
+        catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+   
+    // PLAYER STATS & BOT
+    int hp = 10;
+    int sp = 0;
+    // GOKU STATS
+    int ghp = 10;
+    int gsp = 0;
+    public void Fighting() {
+        while(hp > 0 && ghp > 0) {	  		    		
+                //     Thread.sleep(1500);
+                Scanner choice1 = new Scanner(System.in);
+                System.out.println("=====================");
+                System.out.println("Goku's HP:" + ghp);
+                System.out.println("Goku's SP:" + gsp);
+                System.out.println("=====================");
+                System.out.println("Your HP:" + hp);
+                System.out.println("Your SP:" + sp);
+                System.out.println("=====================");
+                ///  Thread.sleep(2000);
+                System.out.println("Choose your skills! : \n ==================== \n 1. Charge \n 2. shield \n 3. Ax \n 4. Wave \n 5. Kame \n 6. Amen \n ====================");
+                int choice = choice1.nextInt();
+                if (choice == 1) {
+                    sp++;
+                    GokuSkills();
+                    System.out.println("You just charge");
+                } else if (choice == 2 && sp > 0) {
+                    sp--;
+                    if(gsp < 4) {
+                        charge();
+                    }else {
+                        gsp = gsp - 4;
+                        hp = hp - 6;
+                        System.out.println("Goku's use Kame");
+                        System.out.println("====================");
+                     
+                    }
+                    System.out.println("Your immune");
+                }else if (choice ==3 && sp > 0) {
+                        GokuSkills();
+                        sp = sp -2;
+                        ghp = ghp - 3;
+                        System.out.println("Your use axe");
+                }else if (choice == 4 && sp > 0) {
+                        GokuSkills();
+                        sp--;
+                        ghp = ghp - 2;
+                        System.out.println("Your use Wave");
+                }else if (choice ==5 && sp >= 4) {
+                        sp = sp - 4;
+                        ghp = ghp - 6;
+                        System.out.println("Your use Kame");
+                        GokuSkills();
+                }else if (choice ==6 && sp >= 5) {
+                        sp = sp - 5;
+                        hp = hp + 5;
+                        System.out.println("Your use Amen");
+                    GokuSkills();
+                }else if(sp <= 0) {
+                    GokuSkills();
+                    System.out.println("Your out of skill points");
+                }
+            }      
+        if(ghp > 0) {
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	 System.out.println("====================");
+        	System.out.println(" ");
+        	System.out.println("YOU LOSE");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	 System.out.println("====================");
+        }
+        if(hp > 0) {
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+        	System.out.println(" ");
+       	 System.out.println("====================");
+       	System.out.println(" ");
+       	System.out.println("YOU WIN");
+       	System.out.println(" ");
+       	System.out.println(" ");
+       	 System.out.println("====================");
+        }
+        }      
+    		 
+    public void GokuSkills() {
+        Random random = new Random();
+        int input1 = random.nextInt(6)+1;
+        if (input1 == 1) {
+            charge();
+        }else if(input1 == 2) {
+            if(gsp <= 0) {
+                charge();
+            }else {
+                if(sp < 4) {
+                    charge();
+                }else {
+                    sp = sp - 4;
+                    ghp = ghp - 6;
+                    System.out.println("====================");
+                    System.out.println("Goku's use Kame");
+                    System.out.println("====================");
+                }
+            }
+        }else if(input1 == 3) {
+            if(gsp < 2) {
+                charge();
+            }else {
+                gsp = gsp -2;
+                hp = hp - 3;
+                System.out.println("====================");
+                System.out.println("Goku's use axe");
+                System.out.println("====================");
+            }
+        }else if(input1 == 4) {
+            if(gsp <= 0) {
+                charge();
+            }else {
+                gsp--;
+                hp = hp - 2;
+                System.out.println("====================");
+                System.out.println("Goku's use Wave");
+                System.out.println("====================");
+            }
+        }else if(input1 == 5) {
+
+            if(gsp < 4) {
+                charge();
+            }else {
+                gsp = gsp - 4;
+                hp = hp - 6;
+                System.out.println("====================");
+                System.out.println("Goku's use Kame");
+                System.out.println("====================");
+            }
+        }else if(input1 == 6) {
+            if(gsp < 5) {
+                charge();
+            }else {
+                gsp = gsp - 5;
+                ghp = ghp + 5;
+                System.out.println("====================");
+                System.out.println("Goku's use Amen");
+                System.out.println("====================");
+            }
+        }
+        	}
+    
+    
+    
+    public void charge() {
+        gsp++;
+        System.out.println("====================");
+        System.out.println("Goku just Charge");
+        System.out.println("====================");
+    }
+    
+
+}
